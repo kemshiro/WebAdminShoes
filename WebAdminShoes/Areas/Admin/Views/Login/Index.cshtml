@@ -1,0 +1,61 @@
+﻿@model WebAdminShoes.Areas.Admin.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Modern an Admin Panel Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Assets/admin/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom CSS -->
+    <link href="~/Assets/admin/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Assets/admin/css/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="~/Assets/admin/js/jquery.min.js"></script>
+    <!----webfonts--->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <!---//webfonts--->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Assets/admin/js/bootstrap.min.js"></script>
+</head>
+<body id="login">
+    <div class="login-logo">
+        <a href="/Admin/Login/Index"><img src="~/Assets/admin/images/shoe.png" alt="" /></a>
+    </div>
+    <h2 class="form-heading">Đăng nhập</h2>
+    <div class="app-cam">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+            <div>
+                @Html.TextBoxFor(model => model.username, new { @class = "form-control1", @placeholder = "tài khoản", @autofocus = "autofocus" })
+            </div>
+            <div>
+                @Html.PasswordFor(model => model.password, new { @class = "form-control1", @placeholder = "mật khẩu", @type = "password" })
+            </div>
+            <div>
+                @Html.CheckBoxFor(model => model.rememberMe, new { @class = "checkbox1" })<a>Nhớ mật khẩu?</a>
+            </div>
+            <div>
+                <div class="submit"><input type="submit" onclick="myFunction()" value="Đăng nhập"></div>
+            </div>
+            <ul class="new">
+                <li class="new_left"><p><a href="#">Quên mật khẩu?</a></p></li>
+                <li class="new_right"><p class="sign">Chưa có tài khoản?<a href="/Admin/Register/Create"> Tạo mới</a></p></li>
+            </ul>
+        }
+
+    </div>
+    <div class="copy_layout login">
+        <p>-Edited by k3mShIrO-</p>
+    </div>
+</body>
+</html>

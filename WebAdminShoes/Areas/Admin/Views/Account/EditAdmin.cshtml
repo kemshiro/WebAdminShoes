@@ -1,0 +1,68 @@
+﻿@model Model.EF.TaiKhoan
+
+@{
+    ViewBag.Title = "EditAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+@section header{
+    Chỉnh sửa admin
+}
+
+@using (Html.BeginForm("EditAdmin", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.username)
+        @Html.HiddenFor(model => model.password)
+
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h3>@Html.LabelFor(model => model.name, htmlAttributes: new { @class = "label btn_6 label-warning" })</h3>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.name, new { @class = "form-control1" })
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h3>@Html.LabelFor(model => model.email, htmlAttributes: new { @class = "label btn_6 label-warning" })</h3>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.email, new { @class = "form-control1" })
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h3>@Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "label btn_6 label-warning" })</h3>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.phone, new { @class = "form-control1", @autofocus = "autofocus" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.createdDate)
+        @Html.HiddenFor(model => model.status)
+        @Html.HiddenFor(model => model.isAdmin)
+
+
+        <div class="col-md-12">
+            <div class="app-cam">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu Chỉnh Sửa" class="btn btn-sm btn-warning warning_22" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-12">
+    <div class="col-md-2">
+        @Html.ActionLink("Quay lại", "AdminManager")
+    </div>
+</div>

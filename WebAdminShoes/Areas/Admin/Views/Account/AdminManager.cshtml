@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<Model.EF.TaiKhoan>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Quản Lý Tài Khoản Admin";
+    Layout = "~/Areas/Admin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+@section header{
+    Quản lý tài khoản Admin
+}
+@{
+    int stt = 1;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm("AdminManager", "Account", FormMethod.Get))
+        {
+            <div class="col-md-3">
+                <input type="text" value="@ViewBag.SearchString" name="searchString" placeholder="tìm kiếm" class="form-control1" />
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-sm btn-warning warning_22">Tìm Kiếm</button>
+            </div>
+        }
+        <br>
+        <br>
+        <div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+            <div class="panel-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="info">
+                            <th>STT</th>
+                            <th>Tên tài Khoản</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.id">
+                                <td>@stt</td>
+                                <td>@item.username</td>
+                                <td>@item.name</td>
+                                <td>@item.email</td>
+                                <td>@item.phone</td>
+                                <td>
+                                    <a href="/Admin/Account/EditAdmin/@item.id">Sửa</a>
+                                    |
+                                    @Ajax.ActionLink("Xoá", "DeleteAdmin", new {@id = item.id } ,new AjaxOptions
+                               {
+                                   Confirm = "Bạn có muốn xóa bản ghi này?",
+                                   OnComplete = "$('#row_"+@item.id+"').remove()",
+                                   HttpMethod = "Delete"
+                               })
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page => Url.Action("AdminManager", new { page, @searchString = @ViewBag.SearchString }))
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@model Model.EF.TaiKhoan
+
+@{
+    ViewBag.Title = "StatusUpdate";
+    Layout = "~/Areas/Admin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+@section header{
+    Kích hoạt / Hủy kích hoạt tài khoản
+}
+
+@using (Html.BeginForm("StatusUpdate", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+        @Html.HiddenFor(model => model.id)
+
+
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h3>@Html.LabelFor(model => model.username, htmlAttributes: new { @class = "label btn_6 label-warning" })</h3>
+            </div>
+            <div class="col-md-4">
+                <h4>@Html.ValueFor(model => model.username)</h4>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.HiddenFor(model => model.name)
+
+        @Html.HiddenFor(model => model.email)
+
+        @Html.HiddenFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.HiddenFor(model => model.createdDate, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h3>@Html.LabelFor(model => model.status, htmlAttributes: new { @class = "label btn_6 label-warning" })</h3>
+            </div>
+            <div class="col-md-4">
+                <h4>@Html.TextBoxFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })</h4>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.isAdmin, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="col-md-12">
+            <div class="app-cam">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu Chỉnh Sửa" class="btn btn-sm btn-warning warning_22" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-12">
+    <div class="col-md-2">
+        @Html.ActionLink("Quay lại", "UserManager")
+    </div>
+</div>

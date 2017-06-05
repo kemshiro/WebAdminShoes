@@ -1,0 +1,68 @@
+﻿@model Model.EF.TaiKhoan
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+@{
+    var user = Model;
+}
+
+<div class="widget_4">
+    <div class="col-md-12 widget_1_box1">
+        <div class="coffee">
+            <div class="coffee-top">
+                <a href="#">
+                    <img class="img-responsive" src="~/Assets/admin/images/alo4.jpg" alt="">
+                    <div class="doe">
+                        <h4>@user.username</h4>
+                        <h4><p>@user.name</p></h4>
+                    </div>
+                    <i></i>
+                </a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+<div class="widget_4">
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <h3><span class="label btn_6 label-primary">Địa chỉ email</span></h3>
+    </div>
+    <div class="col-md-8">
+        <h4>@user.email</h4>
+        <br>
+    </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <h3><span class="label btn_6 label-primary">Số điện thoại</span></h3>
+    </div>
+    <div class="col-md-8">
+        <h4>@user.phone</h4>
+        <br>
+    </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <h3><span class="label btn_6 label-primary">Ngày tạo</span></h3>
+    </div>
+    <div class="col-md-8">
+        <h4>@user.createdDate.ToString().Substring(0,10)</h4>
+        <br>
+    </div>
+</div>
+
+<div class="copy">
+    <p>
+        @using (Html.BeginForm("EditAdmin", "Account", FormMethod.Post))
+        {
+                <h3><button type="submit" class="label btn_6 label-info">Thay đổi thông tin</button></h3>
+        }
+    </p>
+</div>
